@@ -11,6 +11,6 @@ EXPOSE 3000
 
 USER node
 
-RUN npm build
+RUN npm run build
 
 CMD [ "npm", "start" ]
