@@ -2,7 +2,7 @@
   "name": "Intesa Vincente",
   "short_name": "Intesa Vincente",
   "description": "WebApp del gioco Intesa Vincente.",
-  "theme_color": "#a760ff",
+  "theme_color": "#fcecdd",
   "background_color": "#fcecdd",
   "display": "standalone",
   "orientation": "portrait",
