@@ -1,7 +1,7 @@
 if (!navigator.serviceWorker.controller) {
   navigator.serviceWorker
-    .register("/js/service.js", {
-      scope: "./"
+    .register("/service.js", {
+      scope: "/"
     });
 }
 
