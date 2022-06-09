@@ -1,8 +1,7 @@
-if (!navigator.serviceWorker.controller) {
-  navigator.serviceWorker
-    .register("/service.js", {
-      scope: "/"
-    });
+if ("serviceWorker" in navigator) {
+  navigator.serviceWorker.register("/service.js", {
+    scope: "/"
+  });
 }
 
 let CACHE_NAME = 'cache';
