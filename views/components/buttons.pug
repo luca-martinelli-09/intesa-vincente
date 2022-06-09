@@ -1,0 +1,22 @@
+.flex.flex-col.justify-center.gap-4
+  .flex.mt-4.gap-4.text-3xl.justify-center
+    a.button.pill.big#play <ion-icon title="Play/Pausa" id="playIcon" name="play-outline"></ion-icon>
+
+  .flex.mt-4.gap-4.text-3xl.justify-center
+    a.button.pill-left.flex-1#addpoint <ion-icon title="Aggiungi un punto" name="checkmark-outline"></ion-icon>
+    a.button.flex-1#removepoint <ion-icon title="Togli un punto" name="close-outline"></ion-icon>
+    a.button.pill-right#pass <ion-icon title="Usa un passo" name="heart-dislike-outline"></ion-icon>
+
+  .flex.gap-3.justify-center.items-center.my-6
+    h3.info#remaintime= defaultTime
+    h3.text-5xl.text-black /
+    h3.info#totalscore= defaultScore
+    span.hidden#word= defaultWord
+
+  .flex.gap-4.justify-center.text-3xl
+    - var i = 0
+    while i < defaultPasses
+      <ion-icon class="pass-icon" id="pass #{i++}" title="Passi a disposizione" name="heart"></ion-icon>
+
+  .flex.gap-4.text-xl.justify-center
+    a.button.pill#reset <ion-icon title="Comincia da capo" name="refresh-outline"></ion-icon>

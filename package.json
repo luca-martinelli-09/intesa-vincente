@@ -1,0 +1,37 @@
+{
+  "name": "intesa-vincente",
+  "version": "1.0.0",
+  "description": "WebApp del gioco \"Intesa Vincente\".",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tailwindcss -i public/css/main_raw.css -o public/css/main.css --minify",
+    "start": "node index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/luca-martinelli-09/intesa-vincente.git"
+  },
+  "keywords": [
+    "webapp",
+    "game",
+    "intesa vincente",
+    "gioco",
+    "reazione a catena"
+  ],
+  "author": "Luca Martinelli",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/luca-martinelli-09/intesa-vincente/issues"
+  },
+  "homepage": "https://github.com/luca-martinelli-09/intesa-vincente#readme",
+  "devDependencies": {
+    "tailwindcss": "^3.0.24"
+  },
+  "dependencies": {
+    "express": "^4.18.1",
+    "pug": "^3.0.2",
+    "socket.io": "^4.5.1",
+    "uuid": "^8.3.2"
+  }
+}

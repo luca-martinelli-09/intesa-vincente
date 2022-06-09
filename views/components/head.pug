@@ -1,0 +1,31 @@
+- var baseSite = "https://intesavincente.lucamartinelli.eu.org"
+
+head
+  meta(charset="UTF-8")
+  meta(http-equiv="X-UA-Compatible" content="IE=edge")
+  meta(name="viewport" content="width=device-width, initial-scale=1.0")
+
+  meta(name="description" content="WebApp del gioco Intesa Vincente.")
+  meta(name="keywords" content="intesa vincente,reazione a catena,rai 1,gioco,webapp")
+  meta(name="author" content="Luca Martinelli")
+
+  title Intesa Vincente
+  link(rel="stylesheet" href="/css/main.css")
+
+  link(rel="icon" href="/images/icons/icon-72x72.png" type="image/png")
+  link(rel="manifest" href="/manifest.json")
+  script(src="/js/service.js") 
+
+  if gameID
+    script const GAME_ID = "#{gameID}";
+
+body
+  header(class="flex flex-col gap-10" + (mode ? " small" : ""))
+    if gameID
+      .flex.items-center
+        a.button.pill.back(href="/")
+          <ion-icon name="arrow-back-outline"></ion-icon>
+
+    h1.title.flex.flex-col.items-center
+      span Intesa
+      span Vincente

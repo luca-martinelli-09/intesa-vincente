@@ -1,0 +1,39 @@
+- var defaultTime = 60
+- var defaultScore = 0
+- var defaultWord = "????????"
+- var defaultPasses = 3
+
+doctype html
+html(lang="en")
+  include components/head.pug
+
+  script const DEFAULT_TIME = #{defaultTime}, DEFAULT_SCORE = #{defaultScore}, DEFAULT_WORD = "#{defaultWord}";
+
+  .mt-16.flex-1.flex.flex-col.items-center
+
+    case mode
+      when "buttons"
+        include components/buttons.pug
+      when "default"
+        include components/default.pug
+      default
+        .flex.flex-col.items-center
+          h2.subtitle Scegli l'interfaccia
+          a.button.pill.text-4xl.mt-8(href="/game/" + gameID + "/default") Principale
+          a.button.pill.text-4xl.mt-4(href="/game/" + gameID + "/buttons") Pulsantiera
+
+    .mt-16.text-left.box
+      h2.subtitle 📢 Condividi il link!
+      p.mt-4 Per una <strong>migliore esperienza</strong> di gioco condividi 
+        a.link.font-bold(href="/game/" + gameID) questo link
+        |  con l'amico che deve indovinare la parola e scegli la modalità pulsantiera. 
+        | Puoi anche utilizzare il <strong>QR code</strong> qui sotto 
+      p.mt-4.flex.justify-center
+        img.qrcode(src="https://chart.googleapis.com/chart?cht=qr&chs=250x250&chld=M|1&chl=" + baseSite + "/game/" + gameID, alt=gameID)
+
+  include components/footer.pug
+
+  if mode
+    script(src="/socket.io/socket.io.min.js")
+    script(src="/js/dictionary.js")
+    script(src="/js/game.js")

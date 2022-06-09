@@ -1,0 +1,22 @@
+doctype html
+html(lang="en")
+  include components/head.pug
+
+  div.mt-16.flex-1.flex.flex-col.items-center
+    a.button.pill.text-4xl(href="/game") Inizia a giocare
+
+    div.mt-16.text-left.box
+      h2.subtitle 📜 Regolamento
+      ul.mt-4.list-disc.list-inside
+        li <strong>Due giocatori</strong> terranno il dispositivo con segnato il tempo, il punteggio e la <strong>parola da indovinare</strong>, il <strong>terzo giocatore</strong> terrà il dispositivo con la <strong>pulsantiera</strong>;
+        li I due giocatori dovranno formulare frasi di <strong>senso compiuto</strong> per descrivere la parola. Se il terzo gioatore <strong>indovina</strong> viene assegnato <strong>un punto</strong>, in caso contrario ne viene tolto uno;
+        li Ogni sessione di gioco ha <strong>tre passo disponibili</strong> da utilizzare se non si è in grado di formulare una frase;
+        li I giocatori che compongono le frasi devono <strong>alternarsi</strong> dicendo <strong>una sola parola</strong> per volta. In caso contrario il tempo si ferma e si <strong>scala un punto</strong>;
+        li <strong>Non</strong> sono ammessi <strong>telegrammi</strong>, solo frasi complete e con un senso;
+        li <strong>Non</strong> sono ammesse parole che contengano la <strong>stessa radice</strong> o siano <strong>sinonimi</strong> o <strong>traduzioni</strong> della parola da cercare. In caso contrario si scala un punto.
+
+    div.mt-16.text-left.box
+      h2.subtitle ✨ Suggerimento
+      p.mt-4 Una volta che <strong>tutti gli amici</strong> sono entrati nella stanza, <strong>salva</strong> il collegamente nella <strong>home screen</strong>. In questo modo i dispositivi saranno sempre <strong>sincronizzati</strong> all'apertura!
+
+  include components/footer.pug
