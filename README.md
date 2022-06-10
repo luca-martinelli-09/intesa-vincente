@@ -26,3 +26,5 @@ In questo modo, i due **giocatori** che devono **formulare** le frasi possono te
 - Web Server [ExpressJS](https://expressjs.com/)
 - Template Engine [PUG](https://pugjs.org/)
 - Web Socket [Socket.io](https://openjsf.org/)
+- [TailwindCSS](https://tailwindcss.com/)
+- [Docker](https://www.docker.com/)
