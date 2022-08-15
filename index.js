@@ -8,6 +8,8 @@ const app = express();
 app.use(express.static("public"));
 app.set('view engine', 'pug');
 
+PORT = process.env.PORT || 3000;
+
 const httpServer = createServer(app);
 const io = new Server(httpServer);
 
@@ -52,4 +54,4 @@ io.on("connection", (socket) => {
   });
 });
 
-httpServer.listen(3000);
+httpServer.listen(PORT);
