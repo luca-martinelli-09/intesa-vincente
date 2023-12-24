@@ -4,5 +4,6 @@ services:
   intesa_vincente:
     build:
       context: .
+    restart: unless-stopped
     ports:
       - ${APP_PORT:-3000}:3000
