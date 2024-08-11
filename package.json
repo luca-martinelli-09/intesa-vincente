@@ -29,6 +29,7 @@
     "tailwindcss": "^3.0.24"
   },
   "dependencies": {
+    "dotenv": "^16.4.5",
     "express": "^4.18.1",
     "pug": "^3.0.2",
     "socket.io": "^4.5.1",

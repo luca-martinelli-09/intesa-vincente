@@ -1,14 +1,16 @@
 const express = require("express");
 const { createServer } = require("http");
 const { Server } = require("socket.io");
-const { v4: uuidv4 } = require('uuid');
+const { v4: uuidv4 } = require("uuid");
+
+require("dotenv").config();
 
 const app = express();
 
 app.use(express.static("public"));
-app.set('view engine', 'pug');
+app.set("view engine", "pug");
 
-PORT = process.env.PORT || 3000;
+PORT = process.env.APP_PORT || 3000;
 
 const httpServer = createServer(app);
 const io = new Server(httpServer);
@@ -50,7 +52,7 @@ io.on("connection", (socket) => {
   });
 
   socket.on("updateStatus", (gameID, command, data) => {
-    socket.to(gameID).emit("updateStatus", command, data)
+    socket.to(gameID).emit("updateStatus", command, data);
   });
 });
 

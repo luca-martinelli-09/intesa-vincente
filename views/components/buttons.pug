@@ -5,6 +5,7 @@
   .flex.mt-4.gap-4.text-3xl.justify-center
     a.button.pill-left.flex-1#addpoint <ion-icon title="Aggiungi un punto" name="checkmark-outline"></ion-icon>
     a.button.flex-1#removepoint <ion-icon title="Togli un punto" name="close-outline"></ion-icon>
+    a.button#double <ion-icon title="Raddoppia" name="sparkles-outline"></ion-icon>
     a.button.pill-right#pass <ion-icon title="Usa un passo" name="heart-dislike-outline"></ion-icon>
 
   .flex.gap-3.justify-center.items-center.my-6
@@ -17,6 +18,10 @@
     - var i = 0
     while i < defaultPasses
       <ion-icon class="pass-icon" id="pass #{i++}" title="Passi a disposizione" name="heart"></ion-icon>
+
+    - var j = 0
+    while j < defaultDoubles
+      <ion-icon class="double-icon" id="double #{j++}" title="Raddoppi a disposizione" name="sparkles"></ion-icon>
 
   .flex.gap-4.text-xl.justify-center
     a.button.pill#reset <ion-icon title="Comincia da capo" name="refresh-outline"></ion-icon>

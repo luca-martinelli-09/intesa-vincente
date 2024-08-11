@@ -1,93 +1,97 @@
-@import url("https://api.fontshare.com/v2/css?f[]=pally@400,700&f[]=boxing@400&display=swap");
+@import url("https://api.fontshare.com/v2/css?f[]=pally@400,700&f[]=bonny@700&display=swap");
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 * {
-  -webkit-touch-callout: none;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
-  @apply bg-[#FCECDD] font-body min-h-screen p-5 flex text-center flex-col text-lg;
+    @apply bg-[#FCECDD] font-body min-h-screen p-5 flex text-center flex-col text-lg;
 }
 
 .button {
-  @apply cursor-pointer inline-flex justify-center items-center
+    @apply cursor-pointer inline-flex justify-center items-center
     bg-[#A760FF] px-6 py-3 text-white font-bold rounded-lg transition-all shadow-solid shadow-[#FC92E3]
     active:shadow-none active:translate-x-[2px] active:translate-y-[5px];
 }
 
 .button.pill {
-  @apply rounded-full;
+    @apply rounded-full;
 }
 
 .button.pill-left {
-  @apply rounded-r-lg rounded-l-[2rem];
+    @apply rounded-r-lg rounded-l-[2rem];
 }
 
 .button.pill-right {
-  @apply rounded-l-lg rounded-r-[2rem];
+    @apply rounded-l-lg rounded-r-[2rem];
 }
 
 footer,
 .box {
-  @apply bg-[#F4EEE8] text-left rounded-lg p-5 border border-[#9f5f80] shadow-solid shadow-[#9f5f80];
+    @apply bg-[#F4EEE8] text-left rounded-lg p-5 border border-[#9f5f80] shadow-solid shadow-[#9f5f80];
 }
 
 footer {
-  @apply text-base;
+    @apply text-base;
 }
 
 .box {
-  @apply max-w-4xl;
+    @apply max-w-4xl;
 }
 
 .link {
-  @apply text-[#F55C47];
+    @apply text-[#F55C47];
 }
 
 .title {
-  @apply text-[#9F5F80] font-display text-6xl sm:text-7xl md:text-8xl;
+    @apply text-[#9F5F80] font-display font-bold text-6xl sm:text-7xl md:text-8xl;
 }
 
 .subtitle {
-  @apply text-3xl font-bold;
+    @apply text-3xl font-bold;
 }
 
 .qrcode {
-  @apply rounded-lg max-w-full;
+    @apply rounded-lg max-w-full;
 }
 
 .button.back {
-  @apply bg-[#590696] shadow-[#ffab4c] text-2xl aspect-square p-4;
+    @apply bg-[#590696] shadow-[#ffab4c] text-2xl aspect-square p-4;
 }
 
 .info {
-  @apply text-[#FF6464] font-bold text-6xl md:text-7xl;
+    @apply text-[#FF6464] font-bold text-6xl md:text-7xl;
 }
 
 .word {
-  @apply bg-[#F4EEE8] rounded-lg border border-[#FF6464] py-3 px-5 text-4xl md:text-7xl uppercase;
+    @apply bg-[#F4EEE8] rounded-lg border border-[#FF6464] py-3 px-5 text-4xl md:text-7xl uppercase;
 }
 
 .pass-icon {
-  @apply text-[#EC255A];
+    @apply text-[#EC255A];
+}
+
+.double-icon {
+    @apply text-[#FFAF00];
 }
 
 header.small {
-  @apply flex-row items-center;
+    @apply flex-row items-center;
 }
 
 header.small .title {
-  @apply text-4xl md:text-5xl md:flex-row md:gap-5;
+    @apply text-4xl md:text-5xl md:flex-row md:gap-5;
 }
 
 .button.big {
-  @apply max-w-md w-full aspect-square text-6xl;
+    @apply max-w-md w-full aspect-square text-6xl;
 }

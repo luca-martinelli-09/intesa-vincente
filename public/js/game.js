@@ -5,17 +5,21 @@ const playStatus = document.getElementById("playIcon");
 const scoreStatus = document.getElementById("totalscore");
 const wordStatus = document.getElementById("word");
 const passHearts = document.getElementsByClassName("pass-icon");
+const doublePoints = document.getElementsByClassName("double-icon");
 
 const playButton = document.getElementById("play");
 const addPointButton = document.getElementById("addpoint");
 const removePointButton = document.getElementById("removepoint");
 const passButton = document.getElementById("pass");
+const doubleButton = document.getElementById("double");
 const resetButton = document.getElementById("reset");
 
 let remainTime = DEFAULT_TIME;
 let totalScore = DEFAULT_SCORE;
 let remainPasses = passHearts.length;
+let remainDoubles = doublePoints.length;
 let currentWord = DEFAULT_WORD;
+let currentWordPoints = 1;
 
 let timer;
 let timerGoing = false;
@@ -30,7 +34,21 @@ function setScore(score) {
 }
 
 function setPasses(passes) {
-  remainPasses = passes >= 0 ? (passes <= passHearts.length ? passes : passHearts.length) : 0;
+  remainPasses =
+    passes >= 0
+      ? passes <= passHearts.length
+        ? passes
+        : passHearts.length
+      : 0;
+}
+
+function setDoubles(doubles) {
+  remainDoubles =
+    doubles >= 0
+      ? doubles <= doublePoints.length
+        ? doubles
+        : doublePoints.length
+      : 0;
 }
 
 function startTimer() {
@@ -63,6 +81,36 @@ function updatePasses(numPass) {
   }
 }
 
+function updateDoubles(numDoubles) {
+  for (let i = 0; i < doublePoints.length; i++) {
+    const doubleIcon = doublePoints[i];
+    if (i < numDoubles) {
+      doubleIcon.setAttribute("name", "sparkles");
+    } else {
+      doubleIcon.setAttribute("name", "sparkles-outline");
+    }
+  }
+}
+
+function play(double = false) {
+  if (remainTime > 0) {
+    let wordWeight = 1;
+
+    if (double) {
+      wordWeight = 2;
+      setDoubles(remainDoubles - 1);
+      updateDoubles(remainDoubles);
+    }
+
+    const word = randomWord(wordWeight);
+    updateStatus(
+      "newWord",
+      { word: word, weight: wordWeight, remainDoubles: remainDoubles },
+      true,
+    );
+  }
+}
+
 socket.emit("getGameStatus", GAME_ID);
 
 socket.on("getGameStatus", () => {
@@ -72,8 +120,9 @@ socket.on("getGameStatus", () => {
     remainTime: remainTime,
     totalScore: totalScore,
     remainPasses: remainPasses,
+    remainDoubles: remainDoubles,
     currentWord: currentWord,
-    displayedWords: displayedWords
+    displayedWords: displayedWords,
   });
 });
 
@@ -84,6 +133,7 @@ socket.on("setGameStatus", (data) => {
     setRemainTime(data.remainTime);
     setScore(data.totalScore);
     setPasses(data.remainPasses);
+    setDoubles(data.remainDoubles);
     currentWord = data.currentWord;
     displayedWords = data.displayedWords;
 
@@ -91,6 +141,7 @@ socket.on("setGameStatus", (data) => {
     remainTimeStatus.innerText = remainTime;
     scoreStatus.innerText = totalScore;
     updatePasses(remainPasses);
+    updateDoubles(remainDoubles);
   }
 });
 
@@ -98,10 +149,7 @@ socket.on("updateStatus", updateStatus);
 
 playButton.addEventListener("click", () => {
   if (!timerGoing) {
-    if (remainTime > 0) {
-      const word = randomWord();
-      updateStatus("newWord", word, true);
-    }
+    play();
   } else {
     updateStatus("stopGame", null, true);
   }
@@ -123,12 +171,19 @@ resetButton.addEventListener("click", () => {
   updateStatus("resetGame", null, true);
 });
 
+doubleButton.addEventListener("click", () => {
+  if (remainDoubles > 0 && !timerGoing) play(true);
+});
 
 function updateStatus(command, data = null, emit = false) {
   if (command == "newWord") {
-    displayedWords.push(data);
-    currentWord = data;
-    wordStatus.innerText = data;
+    displayedWords.push(data.word);
+    currentWord = data.word;
+    currentWordPoints = data.weight;
+    wordStatus.innerText = data.word;
+
+    setDoubles(data.remainDoubles);
+    updateDoubles(remainDoubles);
 
     startTimer();
   }
@@ -140,7 +195,7 @@ function updateStatus(command, data = null, emit = false) {
   if (command == "addPoint") {
     if (canPerformActions) {
       stopTimer();
-      setScore(totalScore + 1);
+      setScore(totalScore + currentWordPoints);
       scoreStatus.innerText = totalScore;
     }
     canPerformActions = false;
@@ -149,7 +204,7 @@ function updateStatus(command, data = null, emit = false) {
   if (command == "removePoint") {
     if (canPerformActions) {
       stopTimer();
-      setScore(totalScore - 1);
+      setScore(totalScore - currentWordPoints);
       scoreStatus.innerText = totalScore;
     }
     canPerformActions = false;
@@ -175,6 +230,7 @@ function updateStatus(command, data = null, emit = false) {
     setScore(DEFAULT_SCORE);
     currentWord = DEFAULT_WORD;
     setPasses(passHearts.length);
+    setDoubles(doublePoints.length);
     canPerformActions = false;
     displayedWords = [];
 
@@ -182,6 +238,7 @@ function updateStatus(command, data = null, emit = false) {
     remainTimeStatus.innerText = remainTime;
     scoreStatus.innerText = totalScore;
     updatePasses(remainPasses);
+    updateDoubles(remainDoubles);
   }
 
   if (emit) {
