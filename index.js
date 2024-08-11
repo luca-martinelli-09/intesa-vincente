@@ -10,7 +10,7 @@ const app = express();
 app.use(express.static("public"));
 app.set("view engine", "pug");
 
-PORT = process.env.APP_PORT || 3000;
+PORT = process.env.PORT || 3000;
 
 const httpServer = createServer(app);
 const io = new Server(httpServer);
