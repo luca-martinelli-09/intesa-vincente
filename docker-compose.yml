@@ -1,9 +1,13 @@
 version: "3"
 
 services:
-  intesa_vincente:
+  intesa-vincente:
     build:
       context: .
     restart: unless-stopped
-    ports:
-      - ${APP_PORT:-3000}:3000
+    networks:
+      - cloudflared
+
+networks:
+  cloudflared:
+    external: true
